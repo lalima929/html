@@ -1,0 +1,340 @@
+#Write a JavaScript code to perform Age Calculator using HTML and CSS.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <style>
+        /* CSS: Makes it look pretty */
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+        }
+
+        h1 { color: #333; margin-bottom: 1.5rem; }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label { font-size: 0.9rem; color: #555; text-align: left; }
+
+        input {
+            padding: 12px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus { border-color: #764ba2; }
+
+        button {
+            padding: 12px;
+            background: #764ba2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        button:hover { background: #5a377d; transform: translateY(-2px); }
+
+        button:active { transform: translateY(0); }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #444;
+            min-height: 1.5em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Age Calculator</h1>
+        <div class="form">
+            <label for="bod">Enter your date of birth:</label>
+            <input id="bod" type="date">
+            <button id="btn">Calculate Age</button>
+            <p id="result">Waiting for input...</p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript: The logic
+        const btn = document.getElementById('btn');
+        const resultDisplay = document.getElementById('result');
+        const birthDateInput = document.getElementById('bod');
+
+        btn.addEventListener('click', () => {
+            const birthDateValue = birthDateInput.value;
+
+            if (!birthDateValue) {
+                resultDisplay.innerText = "⚠️ Please select a date!";
+                resultDisplay.style.color = "red";
+                return;
+            }
+
+            const birthDate = new Date(birthDateValue);
+            const today = new Date();
+
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+
+            // Adjust age if birthday hasn't happened yet this year
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+
+            // Display results
+            resultDisplay.style.color = "#333";
+            if (age < 0) {
+                resultDisplay.innerText = "Time traveler? You aren't born yet!";
+            } else {
+                resultDisplay.innerText = `You are ${age} years old! 🎂`;
+            }
+        });
+    </script>
+
+</body>
+</html>
+#Write a JavaScript code to implement logical operators using switch case. Each case has one logical operator implementation(own).
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Logical Operator Tester</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; padding-top: 50px; background: #f4f7f6; }
+        .box { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 320px; }
+        input, select, button { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        button { background: #28a745; color: white; border: none; font-weight: bold; cursor: pointer; }
+        button:hover { background: #218838; }
+        #output { margin-top: 15px; padding: 10px; background: #e9ecef; border-radius: 6px; font-weight: bold; text-align: center; }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h3>Logic Operator Lab</h3>
+    
+    <label>Input 1:</label>
+    <input type="number" id="val1" placeholder="e.g. 5">
+    
+    <label>Input 2:</label>
+    <input type="number" id="val2" placeholder="e.g. 10">
+    
+    <label>Select Operator:</label>
+    <select id="op">
+        <option value="AND">AND (&&)</option>
+        <option value="OR">OR (||)</option>
+        <option value="NOT">NOT (!)</option>
+    </select>
+    
+    <button onclick="calculateLogic()">Run Logic</button>
+    
+    <div id="output">Result will appear here</div>
+</div>
+
+<script>
+    function calculateLogic() {
+        const v1 = parseFloat(document.getElementById('val1').value);
+        const v2 = parseFloat(document.getElementById('val2').value);
+        const operator = document.getElementById('op').value;
+        const display = document.getElementById('output');
+
+        if (isNaN(v1) || isNaN(v2)) {
+            display.innerText = "Enter both numbers!";
+            return;
+        }
+
+        let result;
+
+        // Switch case implementing logical operators based on user input
+        switch (operator) {
+            case 'AND':
+                // Is V1 greater than 0 AND V2 greater than 0?
+                result = (v1 > 0 && v2 > 0);
+                break;
+
+            case 'OR':
+                // Is V1 equal to 10 OR V2 equal to 10?
+                result = (v1 === 10 || v2 === 10);
+                break;
+
+            case 'NOT':
+                // Is it NOT true that V1 is greater than V2?
+                result = !(v1 > v2);
+                break;
+
+            default:
+                result = "Invalid Selection";
+        }
+
+        display.innerText = "Result: " + result;
+    }
+</script>
+
+</body>
+</html>
+#Write short notes about the selectors, traversal and manipulator in JQuery.
+1. jQuery Selectors 
+Selectors are the "factory functions" in jQuery, used to find or select HTML elements from the DOM. They follow the syntax $(selector).action(), where the $ defines jQuery and the selector locates the element. 
+
+    Basic Selectors:
+        Element Selector: Selects all elements with a specific tag name. Example: $("p") selects all <p> tags.
+        #ID Selector: Uses the # symbol to find a single unique element. Example: $("#myID").
+        Class Selector: Uses the . symbol to find all elements with a specific class. Example: $(".myClass").
+    Positional & Attribute Selectors:
+        Position: :first, :last, :even, :odd, and :eq(index) allow filtering based on order.
+        Attribute: $("[href]") selects elements with a specific attribute, while $("[type='text']") filters by value. 
+
+2. jQuery Traversal
+Traversal refers to "moving through" the DOM tree to find elements based on their relationship to other elements (ancestors, descendants, or siblings). 
+
+    Ancestors (Moving Up):
+        .parent(): Returns the direct parent element.
+        .parents(): Returns all ancestor elements up to the root (<html>).
+        .closest(): Finds the first ancestor that matches a specific selector.
+    Descendants (Moving Down):
+        .children(): Returns all direct children of the selected element.
+        .find(): Searches for all descendants (children, grandchildren, etc.) that match a criteria.
+    Siblings (Moving Sideways):
+        .siblings(): Returns all sibling elements of the selector.
+        .next() / .prev(): Returns the immediately following or preceding sibling. 
+
+3. jQuery Manipulators
+Manipulation methods allow you to change the structure, content, or style of the webpage dynamically. 
+
+    Content Manipulation (Getters/Setters):
+        .html(): Gets or sets the inner HTML (includes tags).
+        .text(): Gets or sets only the plain text content.
+        .val(): Gets or sets values from form fields like textboxes.
+    DOM Insertion (Inside/Outside):
+        .append() / .prepend(): Inserts content at the end or beginning inside the element.
+        .after() / .before(): Inserts content outside (before or after) the selected element.
+    Attributes & CSS:
+        .attr(): Used to get or set attribute values (like src or href).
+        .addClass() / .removeClass(): Dynamically toggles CSS classes.
+    Removal:
+        .remove(): Deletes the selected element and its children.
+        .empty(): Removes only the child elements, keeping the selected element itself. 
+
+Summary Example
+javascript
+
+// Selecting a button, traversing to its parent, and changing the parent's color
+$("#myButton").parent().css("background-color", "yellow");
+
+// Manipulating content
+$(".content").html("<b>New Content Added!</b>");
+#Write an angular JS code to implement arithmetic operations using scopes and rootscopes.
+<!DOCTYPE html>
+<!-- ng-app initializes the AngularJS application -->
+<html ng-app="arithmeticApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS Arithmetic Operations</title>
+    
+    <!-- 1. CORRECT LIBRARY LINK: This must be the full .js URL -->
+    <script src="H:\coding\html\html\jquery-4.0.0.min.js"></script>
+    
+    <style>
+        /* CSS: Styling for a clean, professional 10-mark answer */
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 20px; }
+        .container { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 400px; }
+        .section { border-bottom: 2px solid #eee; padding-bottom: 20px; margin-bottom: 20px; }
+        .section:last-child { border-bottom: none; }
+        h3 { color: #333; margin-top: 0; font-size: 1.2rem; }
+        .input-group { display: flex; gap: 10px; margin-bottom: 10px; }
+        input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #007bff; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        button:hover { background: #0056b3; }
+        .result-text { font-size: 1.1rem; color: #28a745; margin-top: 12px; font-weight: bold; text-align: center; }
+        .tax-label { color: #666; font-size: 0.9rem; margin-bottom: 8px; display: block; }
+        /* ng-cloak prevents {{braces}} from flashing on screen load */
+        [ng-cloak] { display: none !important; }
+    </style>
+</head>
+<body ng-cloak>
+
+    <div class="container">
+        <h2 style="text-align: center; color: #444;">Logic Lab</h2>
+
+        <!-- Section 1: Local scope calculation -->
+        <div class="section" ng-controller="calcController">
+            <h3>Addition ($scope)</h3>
+            <div class="input-group">
+                <input type="number" ng-model="n1" placeholder="Value A">
+                <input type="number" ng-model="n2" placeholder="Value B">
+            </div>
+            <button ng-click="doAdd()">Calculate Sum</button>
+            <p class="result-text">Result: {{result}}</p>
+        </div>
+
+        <!-- Section 2: Global rootScope calculation -->
+        <div class="section" ng-controller="taxController">
+            <h3>Tax Calculation ($rootScope)</h3>
+            <span class="tax-label">Global Tax Rate: <b>{{taxRate}}%</b></span>
+            <input type="number" ng-model="price" placeholder="Enter Base Price">
+            <button ng-click="applyTax()" style="background: #6f42c1; margin-top: 10px;">Apply Global Tax</button>
+            <p class="result-text">Final: {{total | currency:"₹"}}</p>
+        </div>
+    </div>
+
+    <script>
+        // 2. JS: Define the Application Module
+        var app = angular.module('arithmeticApp', []);
+
+        // 3. JS: Set global data using rootScope (available to all controllers)
+        app.run(function($rootScope) {
+            $rootScope.taxRate = 18; // 18% GST Example
+        });
+
+        // 4. JS: Controller for simple scope math
+        app.controller('calcController', function($scope) {
+            $scope.result = 0;
+            $scope.doAdd = function() {
+                // Number() ensures mathematical addition, not string concatenation
+                $scope.result = (Number($scope.n1) || 0) + (Number($scope.n2) || 0);
+            };
+        });
+
+        // 5. JS: Controller accessing both local scope and rootScope
+        app.controller('taxController', function($scope, $rootScope) {
+            $scope.total = 0;
+            $scope.applyTax = function() {
+                var basePrice = Number($scope.price) || 0;
+                var taxAmount = (basePrice * $rootScope.taxRate) / 100;
+                $scope.total = basePrice + taxAmount;
+            };
+        });
+    </script>
+
+</body>
+</html>
+

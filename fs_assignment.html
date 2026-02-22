@@ -1,0 +1,189 @@
+/* Create a attractive for implementing HTML Formatted tags (atleast 20 different tags) */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration & Formatting Lab</title>
+    <style>
+        :root { --primary: #4f46e5; --bg: #f3f4f6; --text: #1f2937; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); display: flex; justify-content: center; padding: 40px; color: var(--text); }
+        .form-card { background: white; width: 600px; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        
+        h1 { text-align: center; color: var(--primary); margin-bottom: 5px; }
+        .sub-header { text-align: center; font-size: 0.9rem; margin-bottom: 25px; color: #6b7280; }
+        
+        fieldset { border: 2px solid #e5e7eb; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+        legend { font-weight: bold; padding: 0 10px; color: var(--primary); }
+        
+        .row { margin-bottom: 15px; }
+        label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.9rem; }
+        
+        input[type="text"], input[type="email"], input[type="password"], select, textarea {
+            width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; box-sizing: border-box;
+        }
+        
+        .format-demo { background: #f9fafb; padding: 15px; border-radius: 8px; border-left: 4px solid var(--primary); font-size: 0.95rem; line-height: 1.6; }
+        
+        button { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1rem; }
+        button:hover { background: #4338ca; }
+        
+        /* Formatting Tag Highlights */
+        mark { background: #fef08a; border-radius: 3px; padding: 0 3px; }
+        code { color: #be185d; font-family: monospace; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="form-card">
+    <h1><ins>Student</ins> Portal</h1>
+    <p class="sub-header">Registration <strong>v2.0</strong> — <em>Formed with HTML5</em></p>
+
+    <form action="#">
+        <!-- Section 1: Basic Info -->
+        <fieldset>
+            <legend>Personal Details</legend>
+            <div class="row">
+                <label>Full Name <sup>*</sup></label>
+                <input type="text" placeholder="e.g. John Doe" required>
+            </div>
+            <div class="row">
+                <label>Email Address <small>(Will be verified)</small></label>
+                <input type="email" placeholder="john@example.com">
+            </div>
+        </fieldset>
+
+        <!-- Section 2: Formatting Tags Showcase (The "Attractive" Part) -->
+        <div class="row">
+            <label>Important Instructions:</label>
+            <div class="format-demo">
+                1. <mark>Highlight:</mark> Do <b>not</b> share your <strong>Secret PIN</strong>.<br>
+                2. <del>Old Fee: ₹5000</del> | <ins>New Fee: ₹4500</ins>.<br>
+                3. Press <kbd>Tab</kbd> to move to the next field.<br>
+                4. Logic: If <var>age</var> &gt; 18, then <code>Status = "Eligible"</code>.<br>
+                5. Address format: <address>City, <i>State</i>, 10<sup>th</sup> Block</address>
+            </div>
+        </div>
+
+        <!-- Section 3: Extra Details -->
+        <fieldset>
+            <legend>Academic Profile</legend>
+            <div class="row">
+                <label>Course Selection</label>
+                <select>
+                    <option>B.Tech Computer Science</option>
+                    <option>B.Sc Mathematics</option>
+                </select>
+            </div>
+            <div class="row">
+                <label>Terms & Conditions</label>
+                <p><q>I agree to follow all <abbr title="University">Uni</abbr> rules.</q> — <cite>Student Council</cite></p>
+                <input type="checkbox"> I accept.
+            </div>
+        </fieldset>
+
+        <!-- Final Tags -->
+        <div class="row" style="text-align:center;">
+            <p><s>Offer valid until midnight.</s> <br>
+            <bdo dir="rtl">BACKWARDS TEXT DEMO</bdo></p>
+            <pre>Form ID: #9921-X</pre>
+        </div>
+
+        <button type="submit">Register Now</button>
+    </form>
+</div>
+
+</body>
+</html>
+/* Write a JavaScript code to implement both user-defined and standard function concepts. */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Functions: Standard & User-Defined</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 50px; }
+        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 400px; text-align: center; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #2563eb; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        button:hover { background: #1d4ed8; }
+        #display { margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 8px; border-left: 5px solid #2563eb; text-align: left; line-height: 1.6; }
+        code { color: #d63384; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Function Lab</h2>
+    <p>Enter details to process logic:</p>
+    
+    <input type="text" id="userName" placeholder="Enter Your Name">
+    <input type="number" id="purchaseAmt" placeholder="Purchase Amount (₹)">
+    
+    <button onclick="processData()">Run Functions</button>
+
+    <div id="display">Results will appear here...</div>
+</div>
+
+<script>
+    /* --- 1. USER-DEFINED FUNCTIONS --- */
+
+    // Function with Parameters and Return Value
+    function calculateRewards(amount) {
+        // Logic: 5% of purchase amount
+        return amount * 0.05; 
+    }
+
+    // Arrow Function (Modern User-Defined Style)
+    const createID = (name) => {
+        // Using Standard Functions inside User-Defined function
+        let cleanName = name.trim().toUpperCase(); // .trim() and .toUpperCase() are STANDARD
+        let randomKey = Math.floor(Math.random() * 900) + 100; // Math functions are STANDARD
+        return cleanName + "-" + randomKey;
+    };
+
+    /* --- 2. MAIN LOGIC (Executing both types) --- */
+
+    function processData() {
+        // A. Getting Inputs (Standard DOM functions)
+        const nameInput = document.getElementById('userName').value;
+        const amountInput = parseFloat(document.getElementById('purchaseAmt').value);
+        const display = document.getElementById('display');
+
+        if (!nameInput || isNaN(amountInput)) {
+            alert("Please fill both fields!"); // alert() is a STANDARD function
+            return;
+        }
+
+        // B. Calling User-Defined Functions
+        let memberID = createID(nameInput);
+        let rewards = calculateRewards(amountInput);
+
+        // C. Formatting output using Standard Functions
+        // .toFixed(2) is a STANDARD function to limit decimals
+        let finalMessage = `
+            <strong>Process Complete:</strong><br>
+            User ID: <code>${memberID}</code><br>
+            Base Amount: ₹${amountInput}<br>
+            Reward Points: <code>${rewards.toFixed(2)}</code><br>
+            <small>Processed at: ${new Date().toLocaleTimeString()}</small>
+        `;
+
+        display.innerHTML = finalMessage;
+    }
+</script>
+
+</body>
+</html>
+/** Technical Breakdown (For Theory Notes)
+
+    Standard Functions (Built-in):
+        Math.random(): Generates a floating-point number between 0 and 1.
+        Math.floor(): Rounds a number down to the nearest integer.
+        toUpperCase(): Converts a string to capital letters.
+        trim(): Removes whitespace from both sides of a string.
+        parseFloat(): Parses a string and returns a floating-point number.
+        toFixed(2): Formats a number with exactly two decimals.
+    User-Defined Functions (Custom):
+        calculateRewards(amount): A Named Function that handles business logic (calculating 5% cashback).
+        createID(name): An Arrow Function that combines multiple standard methods to generate a unique string.
+        processData(): An Event-Handler Function that coordinates the flow between the UI and the logic. **/
